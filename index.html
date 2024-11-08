@@ -1,18 +1,21 @@
 ---
 layout: default
+pagination:
+  enabled: true
 ---
-<main class="shelf">
-  {% for book in site.data.books  %}
-  <article class="book">
-    <figure class="book-cover">
-      <a href="{{ book.link }}">
-        <img src="./images/{{ book.image }}" alt="{{ book.title }}">
-      </a>
-    </figure>
-    <div class="book-info">
-      <h2>{{ book.title }}</h2>
-      <p>{{ book.author }}</p>
+<!-- The main content area -->
+<div class="posts">
+  <div class="grid-xlarge">
+    <div class="posts__container" itemscope itemtype="http://schema.org/Blog" data-columns>
+
+      {% for post in paginator.posts %}
+
+        <!-- The tag below includes the markup for each post - partials/post-card.html -->
+        {% include post-card.html %}
+
+      {% endfor %}
     </div>
-  </article>
-  {% endfor %}
-</main>
+  </div>
+
+  {% include pagination.html %}
+</div>
